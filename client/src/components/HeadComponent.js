@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-<Link to="/about">Go to About</Link>
 
 export const HeadComp = () => {
     return (
