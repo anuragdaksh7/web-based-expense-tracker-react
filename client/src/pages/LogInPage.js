@@ -1,4 +1,5 @@
-// import myImage from './imageAssets/bg-3.png';
+import React from "react";
+import { useNavigate } from 'react-router-dom';// import myImage from './imageAssets/bg-3.png';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 const inputStyle = "outline-none py-1 px-2 w-full mb-4 rounded-md";
@@ -6,12 +7,13 @@ const inputStyle = "outline-none py-1 px-2 w-full mb-4 rounded-md";
 
 
 export const LogInPage = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const loginFunc = () => {
         // console.log(email, password);
         fetch("http://localhost:5000/login", {
-            method: 'POST',
+            method: 'POST',credentials: 'include',
             headers: {
             'Content-Type': 'application/json', // Set the content type to JSON
             // Add any other headers if needed
@@ -22,10 +24,13 @@ export const LogInPage = () => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+                console.log(response);
             return response.json(); // Parse the response body as JSON
             })
             .then(data => {
             // Handle the JSON data returned from the server
+            console.log("Fsafs");
+            navigate('/home');
             console.log(data);
             })
             .catch(error => {

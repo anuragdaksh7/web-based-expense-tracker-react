@@ -9,8 +9,14 @@ const cookieParser = require("cookie-parser");
 const auth = require("./middleware/auth.js");
 const cors = require('cors');
 
+const corsOptions = {
+    origin: 'http://localhost:3000', // Replace with your frontend's URL
+    methods: ["GET","POST"],
+    credentials: true, // Allow credentials (cookies) to be sent with the request
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -93,11 +99,11 @@ app.post("/login", async(req, res) => {
                 // secure: true
             }
         );
-        // console.log(`cookie: ${req.cookies.jwt}`);
+        console.log(`cookie: ${req.cookies.jwt} `);
         if (userEmail.password === password){
-            res.send("success").status(200);
+            res.json({}).status(200);
         } else {
-            res.send("invalid creds");
+            res.header('Access-Control-Allow-Origin', 'http://localhost:3000').send("invalid creds");
         }
 
     } catch (error) {
