@@ -1,12 +1,16 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';// import myImage from './imageAssets/bg-3.png';
+import Cookies from 'js-cookie';
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { HeadComp } from "../components/HeadComponent";
+
 const inputStyle = "outline-none py-1 px-2 w-full mb-4 rounded-md";
 
-
-
 export const LogInPage = () => {
+
+    Cookies.remove('jwt');
+    Cookies.remove('user');
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -30,6 +34,7 @@ export const LogInPage = () => {
             .then(data => {
             // Handle the JSON data returned from the server
             console.log("Fsafs");
+            
             navigate('/home');
             console.log(data);
             })
@@ -40,6 +45,9 @@ export const LogInPage = () => {
     }
 
     return (
+        <>
+        
+        <HeadComp />
         <div className="flex justify-center">
             <div className="mt-8 w-1/3 px-8">
                 <h1 className="mb-4 text-4xl font-semibold text-white text-center">BUDGETAID</h1>
@@ -52,8 +60,8 @@ export const LogInPage = () => {
                     <button onClick={loginFunc} className="w-full mb-4 bg-blue-600 mt-4 py-2 rounded-xl font-bold font-montserrat text-white text-2xl" >Log In</button>
                     <p className="text-sm">Don't have an account yet? <Link className="text-blue-800" to="/signup">SignUP</Link></p>
                 </div>
-                
             </div>
         </div>
+        </>
     );
 }

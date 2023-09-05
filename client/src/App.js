@@ -5,12 +5,13 @@ import { HeadComp } from "./components/HeadComponent";
 import { LandingPage } from "./pages/landingPage";
 import { LogInPage } from "./pages/LogInPage";
 import { SignUpPage } from "./pages/signup";
+import { useState } from "react";
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <HeadComp />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LogInPage />} />

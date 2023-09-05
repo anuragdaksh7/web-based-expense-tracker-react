@@ -37,12 +37,23 @@ app.post("/signup", async (req, res) =>{
         });
 
         const token = await register.generateAuthToken();
+
+        res.cookie(
+            "user",
+            req.body.username,
+            {
+                httpOnly: false,
+                secure: true
+            }
+        )
+
         res.cookie(
             "jwt",
             token, 
             {
-                expires: new Date(Date.now()+30000),
-                httpOnly: true
+                // expires: new Date(Date.now()+30000),
+                httpOnly: false,
+                secure: true
             }
         );
         // console.log(userCache);
@@ -71,7 +82,7 @@ app.post("/signup", async (req, res) =>{
             ]
         });u.save();
         const registered = await register.save();
-        res.status(201).redirect("/home");
+        res.json({}).status(200);
 
     } catch (error) {
         res.status(400).send(error);
@@ -84,22 +95,32 @@ app.post("/login", async(req, res) => {
     console.log(req.body);
     console.log(req.body.email);
     try {
-        
+        console.log(req.body.email);
         const email = req.body.email;
         const password = hash(req.body.password);
 
         const userEmail = await Register.findOne({email: email});
         const token = await userEmail.generateAuthToken();
+
+        res.cookie(
+            "user",
+            userEmail.userName,
+            {
+                httpOnly: false,
+                secure: true
+            }
+        )
+
         res.cookie(
             "jwt",
             token, 
             {
                 // expires: new Date(Date.now()+30000),
-                httpOnly: true,
-                // secure: true
+                httpOnly: false,
+                secure: true
             }
         );
-        console.log(`cookie: ${req.cookies.jwt} `);
+        // console.log(`cookie: ${req.cookies.jwt} `);
         if (userEmail.password === password){
             res.json({}).status(200);
         } else {

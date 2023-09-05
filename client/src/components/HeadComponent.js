@@ -1,15 +1,34 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { HeadComponentSigned } from './HeadComponentSignedIn';
+import { HeadComponentUnsiged } from './HeadComponentUnsigned';
+
+
 
 export const HeadComp = () => {
-    return (
-        <div className="w-full rounded-b-lg shadow-lg bg-[#7446c6] px-20 pt-6 pb-6">
-            <div className="flex justify-between items-center">
-                <Link to="/"><h1 className="text-[#f5f5f5] text-6xl font-montserrat" >BUDGETAID</h1></Link>
-                <div>
-                    <Link to="/login"><button className="mx-6 bg-black text-white px-8 py-4 rounded-xl">Log In</button></Link>
-                    <Link to="/signup"><button className="mx-6 bg-black text-white px-8 py-4 rounded-xl">SignUp</button></Link>
-                </div>
-            </div>
-        </div>
-    )
+    const [log, setLog] = useState(false);
+
+    const a = document.cookie.split(";");
+    function check() {
+        for (const cookie of a) {
+            const [name, _tmp] = cookie.split("=");
+            if (name === "jwt" || name === " jwt") {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    useEffect(() => {
+        
+        console.log(check());
+        if (check()){
+            
+            setLog(true);
+        }
+    }, [location.href]);
+    if (!log){
+        return <HeadComponentUnsiged />
+    }
+    return<HeadComponentSigned />
 }

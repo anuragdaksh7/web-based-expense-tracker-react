@@ -1,8 +1,16 @@
 import myImage from './imageAssets/homeImage.jpg';
+import { HeadComp } from '../components/HeadComponent';
+import Cookies from 'js-cookie';
+
 
 
 export const LandingPage = () => {
-    return <div className="flex justify-center">
+    Cookies.remove('jwt');
+    Cookies.remove('user');
+    return <>
+    
+    <HeadComp />
+    <div className="flex justify-center">
 
         <div className="w-1/2 flex mt-12 rounded-lg shadow-md">
             <img src={myImage} className='w-1/2 rounded-l-lg' alt="Fds" />
@@ -18,5 +26,5 @@ export const LandingPage = () => {
             </div>
         </div>
 
-    </div>
+    </div></>
 }
