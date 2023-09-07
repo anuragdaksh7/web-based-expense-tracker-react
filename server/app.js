@@ -132,3 +132,8 @@ app.post("/login", async(req, res) => {
         res.status(400).send(error);
     }
 });
+
+app.get("/some", (req, res)=>{
+    console.log(req.user);
+    res.send(req.user).status(200);
+})

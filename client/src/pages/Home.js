@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { HeadComp } from "../components/HeadComponent";
-
+import { MonthlyExp } from "../components/MonthlyExpenseOverview";
+import { Recents } from "../components/Recents";
 
 export const Home = () => {
 
@@ -26,6 +27,7 @@ export const Home = () => {
     return <>
     
     <HeadComp />
-    <h1>home</h1>
+    <MonthlyExp />
+    <Recents />
     </>;
 };

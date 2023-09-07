@@ -6,3 +6,8 @@ Content-Type: application/json
     "email": "anoo@t.t",
     "password": "t"
 }
+
+###
+
+GET http://localhost:5000/some
+
