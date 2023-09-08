@@ -1,5 +1,6 @@
-const tHeadStyle = "border-2 border-black p-2 shadow-lg hover:bg-[#b99dfa] transition duration-200";
-const tRowStyle = "";
+const tHeadStyle = "text-white border-2 border-black p-2 py-3 hover:bg-[#b99dfa] transition duration-200";
+const tRowStyle = "text-white font-semibold text-center hover:scale-x-105 border-b-2 border-black p-2 py-3 transition duration-200";
+const tRow = "hover:scale-x-105 transition duration-200";
 export const Recents = () => {
     return (
         <div className="flex justify-center mt-12">
@@ -14,17 +15,17 @@ export const Recents = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr className={tRow}>
                             <td className={tRowStyle}>2023-09-07</td>
                             <td className={tRowStyle}>500</td>
                             <td className={tRowStyle}>food</td>
                         </tr>
-                        <tr>
+                        <tr className={tRow}>
                             <td className={tRowStyle}>2023-09-07</td>
                             <td className={tRowStyle}>500</td>
                             <td className={tRowStyle}>food</td>
                         </tr>
-                        <tr>
+                        <tr className={tRow}>
                             <td className={tRowStyle}>2023-09-07</td>
                             <td className={tRowStyle}>500</td>
                             <td className={tRowStyle}>food</td>

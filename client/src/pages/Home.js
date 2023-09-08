@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { HeadComp } from "../components/HeadComponent";
 import { MonthlyExp } from "../components/MonthlyExpenseOverview";
 import { Recents } from "../components/Recents";
+import { LineGraph } from "../components/LineGraph";
+import { PieChartt } from "../components/PieChartt";
 
 export const Home = () => {
 
@@ -29,5 +31,7 @@ export const Home = () => {
     <HeadComp />
     <MonthlyExp />
     <Recents />
+    <LineGraph />
+    <PieChartt />
     </>;
 };
