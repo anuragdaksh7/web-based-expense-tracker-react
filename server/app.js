@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const hash = require("./hash.js");
-const PORT = process.env.PORT;
+const {PORT} = process.env;
 const db = require("./db/db.js");
 const Register = require("./db/register.js");
 const cookieParser = require("cookie-parser");
@@ -96,7 +96,7 @@ app.post("/login", async(req, res) => {
     console.log(req.body.email);
     try {
         console.log(req.body.email);
-        const email = req.body.email;
+        const {email} = req.body;
         const password = hash(req.body.password);
 
         const userEmail = await Register.findOne({email: email});
