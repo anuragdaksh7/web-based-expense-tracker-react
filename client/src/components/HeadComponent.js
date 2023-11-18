@@ -9,6 +9,8 @@ export const HeadComp = () => {
     const [log, setLog] = useState(false);
 
     const a = document.cookie.split(";");
+
+    // sourcery skip: avoid-function-declarations-in-blocks
     function check() {
         for (const cookie of a) {
             const [name, _tmp] = cookie.split("=");
@@ -30,5 +32,5 @@ export const HeadComp = () => {
     if (!log){
         return <HeadComponentUnsiged />
     }
-    return<HeadComponentSigned />
+    return <HeadComponentSigned />
 }
