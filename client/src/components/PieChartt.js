@@ -1,51 +1,48 @@
-import {Pie, PieChart} from "recharts";
+// Filename - App.js
 
-const data01 = [
-{
-    name: "Group A",
-    value: 400,
-},
-{
-    name: "Group B",
-    value: 300,
-},
-{
-    name: "Group C",
-    value: 300,
-},
-{
-    name: "Group D",
-    value: 200,
-},
-{
-    name: "Group E",
-    value: 278,
-},
-{
-    name: "Group F",
-    value: 189,
-},
-];
-
+import React, { useEffect, useState } from "react";
+import {
+	BarChart,
+	Bar,
+	CartesianGrid,
+	XAxis,
+	YAxis,
+} from "recharts";
 
 export const PieChartt = () => {
-    const d2 = [];
-    for (let i= 0; i< 3; i++){
-        d2.push(data01[i]);
-    }
-return (
-    <div className="flex justify-center">
-        <PieChart width={730} height={250}>
-            <Pie
-            data={data01}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            outerRadius={50}
-            fill="#8884d8"
-            />
-        </PieChart>
-    </div>
-);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const updateScreenWidth = () => {
+        setScreenWidth(window.innerWidth);
+    };
+    useEffect(() => {
+        window.addEventListener('resize', updateScreenWidth);
+    
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', updateScreenWidth);
+        };
+    }, []);
+	// Sample data
+	const data = [
+		{ name: "Geeksforgees", students: 400 },
+		{ name: "Technical   ", students: 700 },
+		{ name: "Geek-i-knack", students: 200 },
+		{ name: "Geek-i-knack", students: 300 },
+		{ name: "Geek-i-knack", students: 600 },
+		{ name: "Geek-i-knack", students: 200 },
+		{ name: "Geek-o-mania", students: 100 },
+	];
+
+	return (
+        <div className="flex justify-center mt-12 pe-4 mb-8">
+            <BarChart width={Math.min(screenWidth -10, 800)} height={250} data={data}>
+                <Bar dataKey="students" fill="#16a34a" />
+                <CartesianGrid stroke="#ccc" />
+                <XAxis dataKey="name" />
+                <YAxis />
+            </BarChart>
+        </div>
+	);
 };
+
+// export default PieChartt;

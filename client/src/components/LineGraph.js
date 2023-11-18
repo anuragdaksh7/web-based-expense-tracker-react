@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 
 const data = [
@@ -24,38 +25,34 @@ const data = [
     "uv": 2780,
     "monthly expense": 3908,
     "amt": 2000
-    },
-    {
-    "name": "May",
-    "uv": 1890,
-    "monthly expense": 4800,
-    "amt": 2181
-    },
-    {
-    "name": "June",
-    "uv": 2390,
-    "monthly expense": 3800,
-    "amt": 2500
-    },
-    {
-    "name": "July",
-    "uv": 3490,
-    "monthly expense": 4300,
-    "amt": 2100
     }
 ]
 
 export const LineGraph = () => {
+
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const updateScreenWidth = () => {
+        setScreenWidth(window.innerWidth);
+    };
+    useEffect(() => {
+        window.addEventListener('resize', updateScreenWidth);
+    
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', updateScreenWidth);
+        };
+    }, []);
+
     return (
-        <div className='flex justify-center mt-12'>
-            <LineChart className='2/3' width={730} height={250} data={data}
+        <div className='flex justify-center mt-12 pe-4 mb-8'>
+            <LineChart className='2/3 text-sm text-green-600' width={Math.min(screenWidth -10, 800)} height={250} data={data}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }} >
                 <CartesianGrid strokeDasharray="3" />
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="monthly expense" stroke="#000" />
+                <Line type="monotone" dataKey="monthly expense" stroke="#16a34a" />
             </LineChart>
         </div>
     )
