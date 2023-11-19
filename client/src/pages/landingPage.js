@@ -1,4 +1,4 @@
-import myImage from './imageAssets/homeImage.jpg';
+// import myImage from './imageAssets/homeImage.jpg';
 import { HeadComp } from '../components/HeadComponent';
 import Cookies from 'js-cookie';
 

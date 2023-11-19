@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 // import { About } from "./pages/About";
-import { HeadComp } from "./components/HeadComponent";
+// import { HeadComp } from "./components/HeadComponent";
 import { LandingPage } from "./pages/landingPage";
 import { LogInPage } from "./pages/LogInPage";
 import { SignUpPage } from "./pages/signup";
-import { useState } from "react";
+import { AddExp } from "./pages/AddExp";
+// import { useState } from "react";
+// import { MonthlyExp } from "./components/MonthlyExpenseOverview";
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
           <Route path="/login" element={<LogInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/addexpense" element={<AddExp />} />
         </Routes>
       </BrowserRouter>
     </>
