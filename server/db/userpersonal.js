@@ -1,5 +1,6 @@
 require('dotenv').config();
-const mongoose = require("mongoose");const db = require("./db.js");
+const mongoose = require("mongoose");
+const db = require("./db.js");
 
 
 const userSchema = new mongoose.Schema({

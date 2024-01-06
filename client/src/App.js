@@ -6,6 +6,7 @@ import { LandingPage } from "./pages/landingPage";
 import { LogInPage } from "./pages/LogInPage";
 import { SignUpPage } from "./pages/signup";
 import { AddExp } from "./pages/AddExp";
+import { AllExp } from "./pages/AllExp";
 // import { useState } from "react";
 // import { MonthlyExp } from "./components/MonthlyExpenseOverview";
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/addexpense" element={<AddExp />} />
+          <Route path="/allexps" element={<AllExp />} />
         </Routes>
       </BrowserRouter>
     </>

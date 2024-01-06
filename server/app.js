@@ -5,6 +5,7 @@ const hash = require("./hash.js");
 const {PORT} = process.env;
 const db = require("./db/db.js");
 const Register = require("./db/register.js");
+const userCache = require("./db/userpersonal.js");
 const cookieParser = require("cookie-parser");
 const auth = require("./middleware/auth.js");
 const cors = require('cors');
@@ -90,6 +91,21 @@ app.post("/signup", async (req, res) =>{
 });
 
 
+app.get('/',(req, res) => {
+    res.send("sada");
+})
+
+
+app.get('/getUser', auth,async (req, res) => {
+    // console.log(req.user);
+    const user = await userCache.findOne({userEmail:req.user.email});
+    const expense = user.Expenses;
+    const arr = Array();
+    for (let i = 0; i< expense.length; i++) {
+        arr.push(expense[i].expense)
+    }
+    res.send(arr);
+})
 
 app.post("/login", async(req, res) => {
     console.log(req.body);
@@ -132,6 +148,7 @@ app.post("/login", async(req, res) => {
         res.status(400).send(error);
     }
 });
+
 
 app.get("/some", (req, res)=>{
     console.log(req.user);

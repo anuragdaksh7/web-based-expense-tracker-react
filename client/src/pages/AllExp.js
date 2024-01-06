@@ -1,31 +1,73 @@
-import axios from "axios";
 import Cookies from "js-cookie";
+import axios from "axios";
 import { useEffect, useState } from "react";
-
+axios.defaults.withCredentials = true;
 const tHeadStyle = "text-white border-2 border-black p-2 py-3 hover:bg-[#333] transition duration-200";
 const tRowStyle = "text-white font-semibold text-center hover:scale-x-105 border-b-2 border-black p-2 py-3 transition duration-200";
 const tRow = "hover:scale-x-105 transition duration-200";
 const BASE = "http://localhost:5000/getUser";
 
 
-export const Recents = () => {
-    const [Transactions, setTransactions] = useState(
+export const AllExp = () => {
+    const [Transactions,setTransactions] = useState(
         [
             {
                 "date": "2023-10-15T00:00:00.000Z",
-                "amount": 0,
+                "amount": 1000,
                 "category": "Groceries",
                 "note": "cssafsd"
             },
             {
                 "date": "2023-10-15T00:00:00.000Z",
-                "amount": 0,
+                "amount": 1000,
                 "category": "Groceries",
                 "note": "cssafsd"
             },
             {
                 "date": "2023-10-15T00:00:00.000Z",
-                "amount": 0,
+                "amount": 1000,
+                "category": "Groceries",
+                "note": "cssafsd"
+            },
+            {
+                "date": "2023-10-15T00:00:00.000Z",
+                "amount": 1000,
+                "category": "Groceries",
+                "note": "cssafsd"
+            },
+            {
+                "date": "2023-10-15T00:00:00.000Z",
+                "amount": 1000,
+                "category": "Groceries",
+                "note": "cssafsd"
+            },
+            {
+                "date": "2023-10-15T00:00:00.000Z",
+                "amount": 1000,
+                "category": "Groceries",
+                "note": "cssafsd"
+            },
+            {
+                "date": "2023-10-15T00:00:00.000Z",
+                "amount": 1000,
+                "category": "Groceries",
+                "note": "cssafsd"
+            },
+            {
+                "date": "2023-10-15T00:00:00.000Z",
+                "amount": 1000,
+                "category": "Groceries",
+                "note": "cssafsd"
+            },
+            {
+                "date": "2023-10-15T00:00:00.000Z",
+                "amount": 1000,
+                "category": "Groceries",
+                "note": "cssafsd"
+            },
+            {
+                "date": "2023-10-15T00:00:00.000Z",
+                "amount": 1000,
                 "category": "Groceries",
                 "note": "cssafsd"
             },
@@ -35,12 +77,13 @@ export const Recents = () => {
     const onPageLoad = () => {
         axios.get(BASE, {
             headers: {
+                
                 Cookie: jwtToken
             }
         })
         .then(response => {
             console.log(response.data);
-            setTransactions(response.data.slice(0,3));
+            setTransactions(response.data);
         })
         .catch(err => {
             console.error(err);
@@ -49,11 +92,10 @@ export const Recents = () => {
     useEffect(() => {
         onPageLoad();
     }, []);
-    return (
-        <div className="flex justify-center mt-4">
-            <div className="w-4/5">
-                <h1 className="text-lg sm:text-2xl text-green-500 font-bold text-center mb-6">Recently Added Transactions</h1>
-                <table className="w-full">
+    
+    return(
+        <div className="flex justify-center items-center mx-20 mt-10">
+            <table className="w-full">
                     <thead>
                         <tr>
                             <th className={tHeadStyle}>Date</th>
@@ -75,7 +117,6 @@ export const Recents = () => {
                         }
                     </tbody>
                 </table>
-            </div>
         </div>
-    );
+    )
 }

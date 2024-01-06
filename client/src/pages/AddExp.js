@@ -1,14 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HeadComp } from "../components/HeadComponent"
 import Dropdown from 'react-dropdown';
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
+axios.defaults.withCredentials = true;
 
+const BASE = "http://localhost:5000/";
 export const AddExp = () => {
-    const options = ['Option 1', 'Option 2', 'Option 3'];
+    const [options,setOptions] = useState(['Option 1', 'Option 2', 'Option 3']);
     const [selectedOption, setSelectedOption] = useState(null);
 
+    const jwtToken = Cookies.get("jwt");
+
+    const onPageLoad = () => {
+        axios.get(BASE+"getUser", {
+            headers: {
+                Cookie: jwtToken
+            }
+        })
+        .then(response => {
+            const data = response.data;
+            const Ar = Array();
+            for (let i = 0; i< data.length; i++){
+                Ar.push(data[i].category);
+            }
+            console.log(Ar);
+            setOptions(Ar);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+    useEffect(() => {
+        onPageLoad();
+    }, [])
+
     const handleSelect = (option) => {
-    setSelectedOption(option.value);
+        setSelectedOption(option.value);
     };
     return (
         <>

@@ -5,7 +5,6 @@ import { HeadComp } from "../components/HeadComponent";
 import { MonthlyExp } from "../components/MonthlyExpenseOverview";
 import { Recents } from "../components/Recents";
 import { LineGraph } from "../components/LineGraph";
-import { PieChartt } from "../components/PieChartt";
 import { UserControls } from "../components/Controls";
 
 export const Home = () => {
@@ -14,6 +13,7 @@ export const Home = () => {
 // sourcery skip: avoid-function-declarations-in-blocks
     function check() {
     for (const cookie of a) {
+            // eslint-disable-next-line no-unused-vars
             const [name, _tmp] = cookie.split("=");
             if (name === "jwt" || name === " jwt") {
                 return true;
@@ -35,6 +35,5 @@ export const Home = () => {
     <MonthlyExp />
     <Recents />
     <LineGraph />
-    <PieChartt />
     </>;
 };

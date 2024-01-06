@@ -11,6 +11,7 @@ export const MonthlyExp = () => {
     // sourcery skip: avoid-function-declarations-in-blocks
     function check() {
     for (const cookie of a) {
+            // eslint-disable-next-line no-unused-vars
             const [name, _tmp] = cookie.split("=");
             if (name === "jwt" || name === " jwt") {
                 return true;
